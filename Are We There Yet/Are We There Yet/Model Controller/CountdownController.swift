@@ -14,9 +14,9 @@ class CountdownController {
     //Data source for the table view
     var countdownList: [Countdown] = []
     
-    @discardableResult func createNewCountdown(title: String, eventNotes: String?) -> Countdown {
+    @discardableResult func createNewCountdown(title: String, eventNotes: String?, date: Date) -> Countdown {
         
-        let newCountdown = Countdown(countDownTitle: title, eventNotes: eventNotes)
+        let newCountdown = Countdown(countDownTitle: title, eventNotes: eventNotes, date: date )
         
         countdownList.append(newCountdown)
         

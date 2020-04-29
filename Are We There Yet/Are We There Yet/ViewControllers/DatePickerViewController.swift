@@ -8,12 +8,6 @@
 
 import UIKit
 
-protocol DatePickerDelegate {
-    func eventDateWasChosen(date: Date)
-    
-    
-}
-
 
 class DatePickerViewController: UIViewController {
     
@@ -26,7 +20,13 @@ class DatePickerViewController: UIViewController {
     
     var delegate: CountDownTableViewControllerDelegate?
     
-    var dateDelegate: DatePickerDelegate?
+    override func viewDidLoad() {
+            super.viewDidLoad()
+
+            
+    }
+    
+    
     
     @IBAction func cancelButtonTapped(_ sender: UIButton) {
         
@@ -37,20 +37,18 @@ class DatePickerViewController: UIViewController {
     @IBAction func saveButtonTapped(_ sender: UIButton) {
         
         guard let countdownTitle = countDownTitleTextField.text, let notesTextField = notesTextField.text else { return }
+        let date = countdownDatePicker.date
         
-        countDownController.createNewCountdown(title: countdownTitle, eventNotes: notesTextField)
+        countDownController.createNewCountdown(title: countdownTitle, eventNotes: notesTextField, date: date)
         
         delegate?.countDownAdded()
-        dateDelegate?.eventDateWasChosen(date: countdownDatePicker.date)
         
         dismiss(animated: true, completion: nil)
         
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
 
-        // Do any additional setup after loading the view.
-    }
-
+    
+    
 }

@@ -19,52 +19,68 @@ class CountownDetailViewController: UIViewController {
     var timer: Timer?
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
-        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(UpdateTime), userInfo: nil, repeats: true)
         
+        
+        //timer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true, block: )
+
     }
     
-    @objc func UpdateTime() {
-        
-        let userCalendar = Calendar.current
-        let date = Date()
-        //Look into changing this function here
-        let components = userCalendar.dateComponents([.hour,.minute,.month,.year,.day,.second], from: date)
-        let currentDate = userCalendar.date(from: components)
-        
-        var eventDateComponents = DateComponents()
-        eventDateComponents.year = 2021
-        eventDateComponents.month = 01
-        eventDateComponents.day = 01
-        eventDateComponents.hour = 00
-        eventDateComponents.minute = 00
-        eventDateComponents.second = 00
-        eventDateComponents.timeZone = TimeZone(abbreviation: "GMT")
-        
-        let eventDate = userCalendar.date(from: eventDateComponents)!
-        
-        let timeLeft = userCalendar.dateComponents([.day,.hour,.minute,.second], from: currentDate!, to: eventDate)
-        
-        counterNumberLabel.text = "\(timeLeft.day!) days \n \(timeLeft.hour!) hours \n \(timeLeft.minute!) minutes \n \(timeLeft.second!) seconds"
-        
-        endEvent(currentdate: currentDate!, eventdate: eventDate)
-    }
     
-    func endEvent(currentdate: Date, eventdate: Date) {
-        
-        if currentdate >= eventdate {
-            
-            counterNumberLabel.text = "WE ARE THERE"
-            
-            timer?.invalidate()
-            
-        }
-        
-    }
+    
+    
     
 
+    @objc func UpdateTime(date: Date) -> Date {
+        
+        let timeLeftover = timeLeft(date: date)
+
+        return timeLeftover.date ?? Date()
+    }
+    
+    //
+    
+    private func timeLeft(date: Date) -> DateComponents {
+        
+        let userCalendar = Calendar.current
+        //Look into changing this function here
+        let components = userCalendar.dateComponents([.hour,.minute,.month,.year,.day,.second], from: Date())
+        let currentDate = userCalendar.date(from: components)
+        
+
+        let timeLeft = userCalendar.dateComponents([.day,.hour,.minute,.second], from: currentDate!, to: date)
+        
+        return timeLeft
+        
+    }
+
+    func endEvent(eventdate: Date) {
+
+        timer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true, block: { (timer) in
+            
+            let currentdate = self.UpdateTime(date: eventdate)
+            
+            if currentdate >= eventdate {
+
+                self.counterNumberLabel.text = "WE ARE THERE"
+
+                timer.invalidate()
+
+            } else {
+                
+                let timeLeftover = self.timeLeft(date: eventdate)
+                
+                
+                self.counterNumberLabel.text = "\(timeLeftover.day!) days \n \(timeLeftover.hour!) hours \n \(timeLeftover.minute!) minutes \n \(timeLeftover.second!) seconds"
+            }
+        })
+        
+        
+
+    }
     
     
     var countDownController: CountdownController?
@@ -90,6 +106,9 @@ class CountownDetailViewController: UIViewController {
         
         countdownTitleLabel.text = countdown.countDownTitle
         notes.text = countdown.eventNotes
+        counterNumberLabel.text = countdown.dateFormatter.string(from: countdown.date)
+        
+        endEvent(eventdate: countdown.date)
         
         
         

@@ -13,7 +13,17 @@ struct Countdown {
     
     var countDownTitle: String
     var eventNotes: String?
+    var date: Date
+    
+    var dateFormatter: DateFormatter {
+        
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "MMM dd, yyyy"
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        
+        return dateFormatter
     
     
-    //ADD DATE IN LATER
+}
 }
