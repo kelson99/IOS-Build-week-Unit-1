@@ -24,8 +24,6 @@ class CountownDetailViewController: UIViewController {
         super.viewDidLoad()
         updateViews()
         
-        
-        //timer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true, block: )
 
     }
     
@@ -41,7 +39,7 @@ class CountownDetailViewController: UIViewController {
         return timeLeftover.date ?? Date()
     }
     
-    //
+    // timeleft function takes in a date and returns a datecomponents
     
     private func timeLeft(date: Date) -> DateComponents {
         
@@ -65,7 +63,7 @@ class CountownDetailViewController: UIViewController {
             
             if currentdate >= eventdate {
 
-                self.counterNumberLabel.text = "WE ARE THERE"
+                self.counterNumberLabel.text = "YOU MADE IT!"
 
                 timer.invalidate()
 

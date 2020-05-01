@@ -26,6 +26,21 @@ class DatePickerViewController: UIViewController {
             
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    func hideKeyBoard() {
+        
+        countDownTitleTextField.resignFirstResponder()
+        
+    }
+    
+    @objc func keyboardWillChange(notification: Notification) {
+        
+        
+        
+    }
     
     
     @IBAction func cancelButtonTapped(_ sender: UIButton) {
