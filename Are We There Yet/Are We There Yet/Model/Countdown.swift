@@ -10,11 +10,11 @@ import Foundation
 
 struct Countdown {
     
+    // MARK: - Properties
     
     var countDownTitle: String
     var eventNotes: String?
     var date: Date
-    
     var dateFormatter: DateFormatter {
         
         let dateFormatter = DateFormatter()
@@ -23,7 +23,5 @@ struct Countdown {
         dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
         
         return dateFormatter
-    
-    
-}
+    }
 }

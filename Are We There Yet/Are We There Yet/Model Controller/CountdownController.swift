@@ -11,8 +11,12 @@ import Foundation
 
 class CountdownController {
     
+    // MARK: - Properties
+
     //Data source for the table view
     var countdownList: [Countdown] = []
+    
+    // MARK: - Functions
     
     @discardableResult func createNewCountdown(title: String, eventNotes: String?, date: Date) -> Countdown {
         
@@ -23,8 +27,4 @@ class CountdownController {
         return newCountdown
         
     }
-    
-    
-    
-    
 }

@@ -11,24 +11,29 @@ import UIKit
 
 class DatePickerViewController: UIViewController {
     
+    // MARK: - Outlets
     
     @IBOutlet weak var countdownDatePicker: UIDatePicker!
     @IBOutlet weak var countDownTitleTextField: UITextField!
     @IBOutlet weak var notesTextField: UITextView!
     
-    var countDownController = CountdownController()
+    // MARK: - Properties
     
+    var countDownController = CountdownController()
     var delegate: CountDownTableViewControllerDelegate?
     
+    //MARK: - Life Cycle Functions
+    
     override func viewDidLoad() {
-            super.viewDidLoad()
-
-            
+        super.viewDidLoad()
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
+    
+    // MARK: - Functions
     
     func hideKeyBoard() {
         
@@ -36,12 +41,7 @@ class DatePickerViewController: UIViewController {
         
     }
     
-    @objc func keyboardWillChange(notification: Notification) {
-        
-        
-        
-    }
-    
+    // MARK: - Actions
     
     @IBAction func cancelButtonTapped(_ sender: UIButton) {
         
@@ -63,7 +63,7 @@ class DatePickerViewController: UIViewController {
     }
     
     
-
+    
     
     
 }

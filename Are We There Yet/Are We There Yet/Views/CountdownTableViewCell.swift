@@ -10,9 +10,13 @@ import UIKit
 
 
 class CountdownTableViewCell: UITableViewCell {
-
+    
+    // MARK: - Outlets
+    
     @IBOutlet weak var countdownTitle: UILabel!
-
+    
+    // MARK: - Properties
+    
     var countdown: Countdown? {
         
         didSet {
@@ -21,12 +25,12 @@ class CountdownTableViewCell: UITableViewCell {
             
         }
     }
-
+    
+    // MARK: - Functions
     
     func updateViews() {
         
         countdownTitle.text = countdown?.countDownTitle
         
     }
-    
 }

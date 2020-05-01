@@ -10,63 +10,72 @@ import UIKit
 
 class CountownDetailViewController: UIViewController {
     
-    
+    // MARK: - Outlets
     
     @IBOutlet weak var countdownTitleLabel: UILabel!
     @IBOutlet weak var counterNumberLabel: UILabel!
     @IBOutlet weak var notes: UITextView!
     
+    // MARK: - Properties
+    
     var timer: Timer?
     
+    var countDownController: CountdownController?
     
+    var countdown: Countdown? {
+        
+        didSet {
+            
+            updateViews()
+            
+        }
+    }
+    
+    //MARK: - Life Cycle Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         updateViews()
         
-
     }
     
     
-    
-    
-    
-
     @objc func UpdateTime(date: Date) -> Date {
         
         let timeLeftover = timeLeft(date: date)
-
+        
         return timeLeftover.date ?? Date()
     }
+    
+    // MARK: - Functions
     
     // timeleft function takes in a date and returns a datecomponents
     
     private func timeLeft(date: Date) -> DateComponents {
         
         let userCalendar = Calendar.current
-        //Look into changing this function here
         let components = userCalendar.dateComponents([.hour,.minute,.month,.year,.day,.second], from: Date())
         let currentDate = userCalendar.date(from: components)
         
-
         let timeLeft = userCalendar.dateComponents([.day,.hour,.minute,.second], from: currentDate!, to: date)
         
         return timeLeft
         
     }
-
+    
     func endEvent(eventdate: Date) {
-
+        
         timer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true, block: { (timer) in
             
             let currentdate = self.UpdateTime(date: eventdate)
             
             if currentdate >= eventdate {
-
+                
                 self.counterNumberLabel.text = "YOU MADE IT!"
-
+                
                 timer.invalidate()
-
+                
             } else {
                 
                 let timeLeftover = self.timeLeft(date: eventdate)
@@ -75,26 +84,7 @@ class CountownDetailViewController: UIViewController {
                 self.counterNumberLabel.text = "\(timeLeftover.day!) days \n \(timeLeftover.hour!) hours \n \(timeLeftover.minute!) minutes \n \(timeLeftover.second!) seconds"
             }
         })
-        
-        
-
     }
-    
-    
-    var countDownController: CountdownController?
-    
-    var countdown: Countdown? {
-        
-        didSet {
-            
-        updateViews()
-            
-        }
-        
-    }
-    
-    
-    
     
     func updateViews() {
         
@@ -108,12 +98,7 @@ class CountownDetailViewController: UIViewController {
         
         endEvent(eventdate: countdown.date)
         
-        
-        
     }
-    
-    
-        
 }
 
 

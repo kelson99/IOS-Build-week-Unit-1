@@ -49,6 +49,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		50130CB0245C859D00529AF8 /* StoryBoards */ = {
+			isa = PBXGroup;
+			children = (
+				50EB3D0924574FD70035FC3F /* Main.storyboard */,
+				50EB3D0E24574FD90035FC3F /* LaunchScreen.storyboard */,
+			);
+			path = StoryBoards;
+			sourceTree = "<group>";
+		};
 		50EB3CF724574FD60035FC3F = {
 			isa = PBXGroup;
 			children = (
@@ -70,13 +79,11 @@
 			isa = PBXGroup;
 			children = (
 				50202B6124593A5600361194 /* digital-7.ttf */,
-				50EB3D0924574FD70035FC3F /* Main.storyboard */,
+				50EB3D2C24575D180035FC3F /* Views */,
+				50EB3D23245758F60035FC3F /* ViewControllers */,
 				50EB3D1C245756450035FC3F /* Model */,
 				50EB3D1D2457564D0035FC3F /* Model Controller */,
-				50EB3D0E24574FD90035FC3F /* LaunchScreen.storyboard */,
 				50EB3D1124574FD90035FC3F /* Info.plist */,
-				50EB3D23245758F60035FC3F /* ViewControllers */,
-				50EB3D2C24575D180035FC3F /* Views */,
 			);
 			path = "Are We There Yet";
 			sourceTree = "<group>";
@@ -84,6 +91,7 @@
 		50EB3D1724574FE80035FC3F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				50130CB0245C859D00529AF8 /* StoryBoards */,
 				50202B6224593A5C00361194 /* digital-7.ttf */,
 				50EB3D0C24574FD90035FC3F /* Assets.xcassets */,
 				50EB3D0324574FD70035FC3F /* AppDelegate.swift */,
